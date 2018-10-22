@@ -1,14 +1,14 @@
 import express from 'express';
-import http from 'http';
 import io from 'socket.io';
 
 const app = express();
 const server = app.listen(5000);
-const _http = http.Server(app);
 const _io = io.listen(server);
 
 // // cors, json, static, urlencoded
 app.use(express.static(__dirname + '/client'));
+app.use(express.static(__dirname + '/node_modules'));
+console.log('aqui')
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use((req, res, next) => {
@@ -33,12 +33,37 @@ _io.on('connection', socket => {
     socket.on('hello', () => {
         console.log('hello mofockers')
         _io.emit('hello from socket.io :)');
-    })
+    });
+
+    socket.on('up', data => {
+        try {
+            _io.emit('up', data);            
+        } catch(e) {
+            console.log(e);
+        }
+    });
+
+    socket.on('down', data => {
+        try {
+            _io.emit('down', data);
+        } catch(e) {
+            console.log(e);
+        }
+    });
+
+    socket.on('left', data => {
+        try {
+            _io.emit('left', data);
+        } catch(e) {
+            console.log(e);
+        }
+    });
+    
+    socket.on('right', data => {
+        try {
+            _io.emit('right', data);
+        } catch(e) {
+            console.log(e);
+        }
+    });    
 });
-
-
-
-/*const server = app.listen((process.env.PORT || 5000), () => {
-    let port = server.address().port;
-    console.log(`Server is listenning on port ${port}`);
-});*/
