@@ -4,7 +4,7 @@ Control with SocketIO for a snake game
 
 ## Getting Started
 
-API developed to be used in blog project.
+Simple control with socket io for a snake game.
 
 ## Technologies
 
