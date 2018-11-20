@@ -1,6 +1,6 @@
 # SnakeGame
 
-Node Js. (Express JS) API for blog project.
+Control with SocketIO for a snake game
 
 ## Getting Started
 
